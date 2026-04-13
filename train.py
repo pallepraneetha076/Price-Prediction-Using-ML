@@ -1,49 +1,19 @@
-import pandas as pd
-import pickle
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_squared_error, r2_score
+from src.preprocessing import preprocess_data
+from src.model_training import train_model, save_model
+from src.evaluation import evaluate_model
 
-<<<<<<< HEAD:model/train.py
-# =========================
-# 1. LOAD DATA
-# =========================
-=======
-# Load data
->>>>>>> 5472faff821a0a75278b53dd22f96d5955d0b81e:train.py
-data = pd.read_csv("dataset/train.csv")
+DATA_PATH = "dataset/train.csv"
 
-# Handle missing values
-for col in data.columns:
-    if data[col].dtype == "object":
-        data[col] = data[col].fillna(data[col].mode()[0])
-    else:
-        data[col] = data[col].fillna(data[col].median())
+# Step 1: preprocessing
+X, y = preprocess_data(DATA_PATH)
 
-# Split
-y = data["SalePrice"]
-X = data.drop(["SalePrice", "Id"], axis=1)
+# Step 2: training
+model, X_test, y_test = train_model(X, y)
 
-X = pd.get_dummies(X, drop_first=True)
+# Step 3: evaluation
+evaluate_model(model, X_test, y_test)
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
+# Step 4: save model
+save_model(model)
 
-# Model
-model = RandomForestRegressor(n_estimators=200, random_state=42)
-model.fit(X_train, y_train)
-
-# Predict
-y_pred = model.predict(X_test)
-
-print("MSE:", mean_squared_error(y_test, y_pred))
-print("R2:", r2_score(y_test, y_pred))
-
-# Save model
-with open("model/model.pkl", "wb") as f:
-    pickle.dump(model, f)
-
-# Save features
-with open("model/features.pkl", "wb") as f:
-    pickle.dump(X.columns.tolist(), f)
+print("Pipeline executed successfully")
