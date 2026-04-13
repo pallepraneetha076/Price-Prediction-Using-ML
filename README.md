@@ -8,7 +8,6 @@ Predict house prices based on different features such as area, quality, rooms, a
 - File: `dataset/train.csv`
 - Target Variable: `SalePrice`
 
-
 ## Workflow
 
 1. Data Preprocessing
@@ -28,7 +27,6 @@ Predict house prices based on different features such as area, quality, rooms, a
 ## Model Performance
 - R² Score: ~0.89
 - MSE: ~8e8 (depends on run)
-
 
 ## How to Run
 
