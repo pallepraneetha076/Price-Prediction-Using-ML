@@ -1,26 +1,43 @@
-# House Price Prediction using Machine Learning
+# House Price Prediction Using Machine Learning
 
-## Project Description
-This project predicts house prices using machine learning based on features like area, bedrooms, bathrooms, location, and more.
+## Problem Statement
+Predict house prices based on different features such as area, quality, rooms, and other property attributes.
 
-## Tech Stack
-- Python
-- Scikit-learn
-- Pandas
-- NumPy
-- Matplotlib
+---
 
-## Model Used
-Random Forest Regressor
+## Dataset
+- Source: Kaggle House Prices Dataset
+- File: `dataset/train.csv`
+- Target Variable: `SalePrice`
+
+---
 
 ## Workflow
-Data Collection → Preprocessing → Training → Evaluation → Prediction → Model Saving
 
-## Files
-- train.py → main ML pipeline
-- model.pkl → trained model
-- features.pkl → feature structure
-- dataset/train.csv → dataset
+1. Data Preprocessing
+   - Missing value handling
+   - Categorical encoding
 
-## Output
-Predicts house price based on input features.
+2. Model Training
+   - Random Forest Regressor
+
+3. Evaluation
+   - Mean Squared Error (MSE)
+   - R² Score
+
+4. Model Saving
+   - Saved using pickle (`model.pkl`)
+
+---
+
+## Model Performance
+- R² Score: ~0.89
+- MSE: ~8e8 (depends on run)
+
+---
+
+## How to Run
+
+```bash
+pip install -r requirements.txt
+python train.py
